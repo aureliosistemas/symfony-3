@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h1 class="col-md-6">Serviços <a class="btn btn-success btn-sm" href="{{ path('servicos_new') }}">Novo</a></h1>
+
+        <div class="col-md-6 text-right"  style="padding-top: 8px;">
+            <div class="btn-group" role="group">
+                <a class="btn btn-primary" href="{{ path('servicoscategoria_index') }}">Categorias</a>
+                <a class="btn btn-primary" href="{{ path('servicostipo_index') }}">Tipos</a>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th width="60">Id</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Categoria</th>
+                <th width="60"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for servico in servicos %}
+            <tr>
+                <td>{{ servico.id }}</td>
+                <td>{{ servico.nome }}</td>
+                <td>{{ servico.tipo }}</td>
+                <td>{{ servico.categoria }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="{{ path('servicos_edit', { 'id': servico.id }) }}">Editar</a>
+                        <a class="btn btn-danger" href="{{ path('servicos_delete', { 'id': servico.id }) }}">Excluir</a>
+                    </div>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

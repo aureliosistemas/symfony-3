@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Serviços | Tipo - Editar</h1>
+    <hr/>
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <div class="btn-group" role="group">
+        <input class="btn-success btn" type="submit" value="Salvar" />
+        <a class="btn btn-primary" href="{{ path('servicostipo_index') }}">Voltar</a>
+    </div>
+    {{ form_end(edit_form) }}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Profissionais - Criar</h1>
+    <hr/>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    <div class="btn-group" role="group">
+        <input class="btn btn-success" type="submit" value="Salvar" />
+        <a class="btn btn-primary" href="{{ path('profissional_index') }}">Voltar</a>
+    </div>
+    {{ form_end(form) }}
+
+
+{% endblock %}

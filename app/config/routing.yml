@@ -1,0 +1,35 @@
+kod_caixa_caixa:
+    resource: "@KodCaixaBundle/Controller/CaixaController.php"
+    type:     annotation
+
+kod_caixa_lancamento:
+    resource: "@KodCaixaBundle/Controller/LancamentoController.php"
+    type:     annotation
+
+kod_caixa_retirada:
+    resource: "@KodCaixaBundle/Controller/RetiradaController.php"
+    type:     annotation
+
+kod_estoque:
+    resource: "@KodEstoqueBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+kod_financeiro:
+    resource: "@KodFinanceiroBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+kod_rh_funcionarios:
+    resource: "@KodRhFuncionariosBundle/Controller/"
+    type:     annotation
+    prefix:   /kod/rh/funcionarios/
+
+kod_caixa:
+    resource: "@KodCaixaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Caixa | Forma de pagamento - Excluir</h1>
+    <hr/>
+    {{ form_start(delete_form) }}
+    <table class="table table-bordered table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ caixaFormaPagamento.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ caixaFormaPagamento.nome }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-group" role="group">
+        <input class="btn btn-danger" type="submit" value="Confirmar">
+        <a class="btn btn-primary" href="{{ path('caixaformapagamento_index') }}">Voltar</a>
+
+    </div>
+    {{ form_end(delete_form) }}
+{% endblock %}

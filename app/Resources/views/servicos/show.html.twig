@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Serviço - Excluir</h1>
+    <hr/>
+    {{ form_start(delete_form) }}
+    <table class="table table-bordered table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ servico.id }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ servico.nome }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ servico.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Categoria</th>
+                <td>{{ servico.categoria}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+            <div>
+                <input class="btn btn-danger" type="submit" value="Confirmar">
+                <a class="btn btn-primary" href="{{ path('servicos_index') }}">Voltar</a>
+
+            </div>
+            {{ form_end(delete_form) }}
+{% endblock %}

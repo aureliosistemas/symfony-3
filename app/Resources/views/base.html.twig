@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Kod{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+
+
+        <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav id="main-menu">
+                <div class="btn-group" role="group">
+                    <a href="{{ path('caixa_index') }}" class="btn btn-dark">Caixa</a>
+                    <a href="{{ path('profissional_index') }}" class="btn btn-dark">Profissionais</a>
+                    <a href="{{ path('servicos_index') }}" class="btn btn-dark">Serviços</a>
+                </div>
+            </nav>
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

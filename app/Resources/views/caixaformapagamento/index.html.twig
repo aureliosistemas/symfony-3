@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Caixa | Formas de pagamento - Criar <a class="btn btn-success btn-sm" href="{{ path('caixa-forma-pagamento_new') }}">Novo</a></h1>
+    <hr/>
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th width="60">Id</th>
+                <th>Nome</th>
+                <th width="60"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for caixaFormaPagamento in caixaFormaPagamentos %}
+            <tr>
+                <td>{{ caixaFormaPagamento.id }}</td>
+                <td>{{ caixaFormaPagamento.nome }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="{{ path('caixa-forma-pagamento_edit', { 'id': caixaFormaPagamento.id }) }}">Editar</a>
+                        <a class="btn btn-danger" href="{{ path('caixa-forma-pagamento_show', { 'id': caixaFormaPagamento.id }) }}">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

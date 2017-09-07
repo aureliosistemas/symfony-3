@@ -1,0 +1,4 @@
+services:
+#    kod_rh_funcionarios.example:
+#        class: Kod\Bundle\Rh\FuncionariosBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

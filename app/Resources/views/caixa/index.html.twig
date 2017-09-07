@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h3 class="col-md-12">Caixas  <a class="btn-novo btn btn-success btn-sm" href="{{ path('caixa_new') }}">Novo</a></h3>
+    </div>
+
+
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Abertura</th>
+                <th>Fechamento</th>
+                <th>Inicial</th>
+                <th>Lançamentos</th>
+                <th>Retiradas</th>
+                <th>Total</th>
+                <th width="60px"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for caixa in caixas %}
+            <tr>
+                <td class="primary">{{ caixa.id }}</td>
+                <td>{% if caixa.abertura %}{{ caixa.abertura|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if caixa.fechamento %}{{ caixa.fechamento|date('d/m/Y') }}{% endif %}</td>
+                <td>R$ {{ caixa.valorInicial }}</td>
+                <td class="text-success">R$ {{ caixa.lancamentos_total|number_format(2, ',', '.') }}</td>
+                <td class="text-danger">R$ {{ caixa.retiradas_total|number_format(2, ',', '.') }}</td>
+                <td>R$ {{ caixa.saldo|number_format(2, ',', '.')   }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="{{ path('caixa_show', { 'id': caixa.id }) }}">
+                            {% if caixa.fechamento %}
+                                Ver
+                            {% else %}
+                                Abrir
+                            {% endif %}
+                        </a>
+                        <a class="btn btn-primary" href="{{ path('caixa_edit', { 'id': caixa.id }) }}">Editar</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

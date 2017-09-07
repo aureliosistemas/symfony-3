@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h3 class="col-md-12">Caixa
+            {% if caixa.fechamento %}
+                <a class="btn btn-sm btn-primary" href="{{ path('caixa_index') }}">Voltar</a>
+            {% else %}
+                <a class="btn btn-sm btn-primary" href="{{ path('lancamento_servico_new', { 'caixa': caixa.id }) }}">Serviços</a>
+                <a class="btn btn-sm btn-danger" href="{{ path('retirada_new', { 'caixa': caixa.id }) }}">Retiradas</a>
+                <a class="btn btn-sm btn-dark" href="{{ path('caixa_fechar', { 'id': caixa.id }) }}">Fechar</a>
+            {% endif %}
+    </h3>
+    </div>
+    <hr/>
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th width="60">Codigo</th>
+                <th>Abertura</th>
+                <th>Fechamento</th>
+                <th>Inicial</th>
+                <th>Lançamentos</th>
+                <th>Retiradas</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ caixa.id }}</td>
+                <td>{% if caixa.abertura %}{{ caixa.abertura|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if caixa.fechamento %}{{ caixa.fechamento|date('d/m/Y') }}{% endif %}</td>
+                <td>R$ {{ caixa.valorInicial }}</td>
+                <td class="text-success">R$ {{ caixa.lancamentos_total|number_format(2, ',', '.') }}</td>
+                <td class="text-danger">R$ {{ caixa.retiradas_total|number_format(2, ',', '.') }}</td>
+                <td>R$ {{ caixa.saldo|number_format(2, ',', '.')   }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+{% if caixa.fechamento %}
+    <h3>Fechamento por profissional</h3>
+    <hr/>
+    <table class="table table-bordered table-responsive">
+
+        <thead>
+        <tr>
+            <th width="50%" class="text-right">Prodissional</th>
+            <th width="50%" class="text-left">Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for profissional  in profissionais %}
+            {% if  profissional.nome %}
+        <tr>
+            <td class="text-right">{{ profissional.nome }}</td>
+            <td class="text-left">R$ {{ profissional.total|number_format(2, ',', '.') }}</td>
+        </tr>
+        </tbody>
+        {% endif %}
+        {% endfor %}
+    </table>
+{% endif %}
+    <h3>Lançamentos</h3>
+    <hr/>
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th width="100">Cod</th>
+                <th>Descrição</th>
+                <th width="100">Forma</th>
+                <th width="100">Valor</th>
+                <th width="100"></th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for lancamento  in caixa.lancamentos %}
+                <tr>
+                    <td>L{{ lancamento.id }}</td>
+                    <td >{{ lancamento.data|date(' H:i')  }} - {{ lancamento }}</td>
+                    <td>{{ lancamento.formaPagamento }}</td>
+                    <td class="text-success">R$ {{ lancamento.valor|number_format(2, ',', '.') }}</td>
+                    <td><a href="{{ path('lancamento_show', { 'id': lancamento.id }) }}" class="btn btn-primary">Ver</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total</td>
+                <td colspan="2" class="text-left">R$ {{ caixa.lancamentos_total|number_format(2, ',', '.')   }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <h3>Retiradas</h3>
+    <hr/>
+    <table class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th width="100">Cod</th>
+            <th>Descrição</th>
+            <th width="100">Forma</th>
+            <th width="100">Valor</th>
+            <th width="100"></th>
+        </tr>
+        </thead>
+        <tbody>
+                {% for retirada  in caixa.retiradas %}
+                    <tr>
+                        <td>R{{ retirada.id }}</td>
+                        <td>{{ retirada.data|date(' H:i')  }} - {{ retirada }}</td>
+                        <td>Dinheiro</td>
+                        <td class="text-danger">R$ {{ retirada.valor|number_format(2, ',', '.') }}</td>
+                        <td><a href="{{ path('retirada_show', { 'id': retirada.id }) }}" class="btn btn-primary">Ver</a></td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total</td>
+                <td colspan="2" class="text-left">R$ {{ caixa.retiradas_total|number_format(2, ',', '.')   }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    kod_estoque.example:
+#        class: Kod\Bundle\EstoqueBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

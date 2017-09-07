@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Profissionais <a class="btn btn-success btn-sm" href="{{ path('profissional_new') }}">Novo</a></h1>
+    <hr />
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th width="60">Id</th>
+                <th>Nome</th>
+                <th width="60"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for profissional in profissionals %}
+            <tr>
+                <td>{{ profissional.id }}</td>
+                <td>{{ profissional.nome }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" href="{{ path('profissional_edit', { 'id': profissional.id }) }}">Editar</a>
+                        <a class="btn btn-danger" href="{{ path('profissional_delete', { 'id': profissional.id }) }}">Excluir</a>
+                    </div>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
